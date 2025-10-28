@@ -19,6 +19,8 @@ gui.geometry("950x1000")
 gui.title("Matho Knights Beta")
 gui.resizable(False, False)
 gui.configure(bg= darkpurple)
+
+#Image Settings
 piknightimg = PhotoImage(file='Pi-Knight.png')
 smallerimg = piknightimg.subsample(4, 4)
 
@@ -66,10 +68,9 @@ def mainpage():
         level_button = tk.Button(gui,
                                 text=f"Level {i+1}",
                                 command= level1,
-                                font=("Montserrat", 30),
+                                font=("Super Trend", 50),
                                 bg=darkpurple,
                                 fg=peach,
-                                width=10,
                                 )
         level_button.grid(row=2, column=i)
 
@@ -99,7 +100,9 @@ def victorypage():
     gameover_label.grid(row=3, column=0, columnspan=4)
     back()
 
-def next_question():
+def question_generator():
+        #BACKEND IMPORTANT STUFF DONT TOUCH!!
+
         #pull variable from closest nested function
         global lives, num_que, status_display
 
@@ -165,8 +168,7 @@ def next_question():
 
             num_que += 1
 
-            status_display.config(text=f"Lives: {lives} | Questions Left: {num_que}/10"
-                                 )
+            status_display.config(text=f"Lives: {lives} | Questions Left: {num_que}/10")
             
             if lives == 0 and num_que <= 10:
                 for widget in gui.winfo_children():
@@ -180,7 +182,7 @@ def next_question():
                 
             else: 
                 #1 second interval for between each question
-                gui.after(1000, next_question)
+                gui.after(1000, question_generator)
         
         #enumerate prints 1 - 4 labelling each button from 1 - 4
         for i, opt in enumerate(options):
@@ -216,11 +218,9 @@ def level1():
                                   height=3,
                                   )
     status_display.grid(row=3, column=0, columnspan=4)
-    next_question()
+    question_generator()
     
 
 mainpage()
     #Runs the tkinter, creates window
 gui.mainloop()
-
-
