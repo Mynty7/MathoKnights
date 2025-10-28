@@ -28,7 +28,6 @@ def play_game():
     Label(new_window, text=f"Welcome to level {selected_level}!", font=(
         "Super Trend", 30)).pack(pady=50)
 
-
 window = Tk()
 
 window.title("Matho Knight!")
